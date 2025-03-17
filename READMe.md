@@ -1,0 +1,27 @@
+
+# Reflection: Challenges in Translating Requirements to Use Cases and Tests
+
+In the process of developing the AI-Driven Automated Database Recovery System, one of the most complex tasks was translating functional and non-functional requirements into use cases and test cases. While requirements provide a foundation for the system, they often need to be distilled into more actionable elements that developers and testers can work with. This reflection highlights the key challenges encountered during this transition and how they were addressed.
+
+1. Ambiguity in Requirements
+One of the most prominent challenges faced was dealing with the inherent ambiguity in some of the requirements. For example, functional requirements like “The system shall predict database failures” can be interpreted in multiple ways. Without a clear definition of success, such as an acceptable failure prediction window or accuracy, it was challenging to create precise and testable use cases. In this case, the ambiguity required multiple clarifications with stakeholders, such as system administrators and IT team members, to define success criteria (e.g., 95% accuracy in predictions 24 hours before a failure).
+
+This challenge was particularly evident when translating non-functional requirements like performance and security into actionable test cases. For instance, "The system shall recover within 30 minutes" lacks specific definitions of what constitutes an acceptable performance window. It required discussions with stakeholders to agree on acceptable recovery time, which was eventually defined as within 30 minutes for RTO (Recovery Time Objective) and no data loss beyond 1 hour for RPO (Recovery Point Objective).
+
+2. Complexity in Use Case Design
+Another significant challenge was designing use cases that effectively represented the system's various actors, interactions, and processes. Given that the system has multiple actors (e.g., IT team, database admins, system admins), designing clear and concise use cases for each role required careful mapping. For instance, defining how the IT team interacts with the system’s backup scheduling mechanism, or how database admins override the automated recovery process, required breaking down the entire workflow into smaller, manageable steps.
+
+Use cases also needed to capture the system's behavior in both normal and exceptional conditions. While basic flows were relatively straightforward to define, alternative flows and exceptions presented challenges. For example, what happens when an automated backup fails or when an AI-powered prediction has a lower than expected accuracy? These scenarios required not only technical understanding but also a deep dive into potential failure modes to ensure robust use case coverage.
+
+3. Translating Use Cases into Test Cases
+Converting use cases into test cases often led to discrepancies between ideal system behavior and real-world conditions. Testing scenarios for functional requirements such as "automated backup" or "AI-driven failure prediction" required identifying potential edge cases that had not been fully considered during the requirements phase. For example, what happens if the backup fails because the system is under heavy load? Or, what if an anomaly detection algorithm mistakenly categorizes a regular database query as a potential threat?
+
+One of the challenges in defining test cases was ensuring they were traceable to the requirements. A test case that checks for recovery time must ensure that the system meets the Recovery Time Objective (RTO) and accurately reflects the requirements. Additionally, it was essential to define clear acceptance criteria for each test case to help distinguish between passing and failing tests.
+
+4. Dealing with Non-Functional Requirements
+Non-functional requirements, such as performance and security, introduced additional complexity. Testing for performance required simulations and the identification of bottlenecks, which involved stress testing the recovery process under different database loads. For security, ensuring that data encryption protocols were in place and functioning correctly required careful review of system design and implementation to verify that encryption algorithms like AES-256 were implemented effectively.
+
+Testing non-functional requirements also led to an iterative process of refining the tests. For example, security tests required understanding various attack vectors and creating scenarios to simulate unauthorized access attempts, while performance tests needed to simulate real-world operational loads.
+
+Conclusion
+Translating requirements into use cases and test cases is an iterative and challenging process. The complexity of ensuring clear, traceable, and executable requirements for both functional and non-functional specifications was a significant hurdle. Through continuous dialogue with stakeholders, iterative refinement of use cases, and collaboration with testers, we were able to craft use cases and test scenarios that align with the original requirements. This process also highlighted the need for constant feedback and adjustments to account for real-world system performance, edge cases, and compliance with security protocols.
